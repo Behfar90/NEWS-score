@@ -1,0 +1,33 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.labelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 130%;
+}
+
+.helperText {
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.input {
+  height: 40px;
+  padding: 10px 12px 10px 24px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 5%, transparent);
+  border-radius: 0;
+  background: var(--color-primary-subtle);
+  color: #24102b;
+  font-size: 16px;
+  line-height: 130%;
+}

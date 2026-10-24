@@ -1,0 +1,29 @@
+:root {
+  --color-primary: #7424da;
+  --color-primary-subtle: #faf6ff;
+  --color-text: #000000;
+  --color-background: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 16px;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}

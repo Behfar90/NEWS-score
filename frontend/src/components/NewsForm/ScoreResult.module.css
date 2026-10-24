@@ -1,0 +1,14 @@
+.result {
+  display: block;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+  border-radius: 10px;
+  background: var(--color-primary-subtle);
+  color: #351b44;
+  font-size: 20px;
+  line-height: 130%;
+}
+
+.score {
+  font-weight: 600;
+}

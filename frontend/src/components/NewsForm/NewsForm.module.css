@@ -1,0 +1,44 @@
+.container,
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.container {
+  max-width: 404px;
+  margin: 96px auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.primaryButton,
+.secondaryButton {
+  height: 40px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: var(--color-primary);
+  color: var(--color-background);
+}
+
+.secondaryButton {
+  background: var(--color-primary-subtle);
+  color: var(--color-text);
+}

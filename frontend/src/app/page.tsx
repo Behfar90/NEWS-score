@@ -1,7 +1,9 @@
+import { NewsForm } from "@/components/NewsForm/NewsForm";
+
 export default function Home() {
   return (
     <main>
-      <h1>NEWS Score</h1>
+      <NewsForm />
     </main>
   );
 }
