@@ -21,6 +21,10 @@ export function NewsForm() {
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+
     const formData = new FormData(event.currentTarget);
 
     setResult(null);
@@ -72,16 +76,20 @@ export function NewsForm() {
           />
         ))}
         <div className={styles.actions}>
-          <button type="submit" className={styles.primaryButton} disabled={isSubmitting}>
+          <button
+            type="submit"
+            className={styles.primaryButton}
+            aria-disabled={isSubmitting || undefined}
+          >
             Calculate NEWS score
           </button>
           <button type="reset" className={styles.secondaryButton}>
             Reset form
           </button>
         </div>
-        {result?.kind === "success" && <ScoreResult score={result.score} />}
         {result?.kind === "invalid" && <ErrorSummary fieldErrors={result.fieldErrors} />}
         {result?.kind === "failed" && <ErrorSummary />}
+        <ScoreResult score={result?.kind === "success" ? result.score : null} />
       </form>
     </div>
   );

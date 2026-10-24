@@ -30,6 +30,7 @@
   color: #24102b;
   font-size: 16px;
   line-height: 130%;
+  scroll-margin-top: 80px;
 }
 
 .input[aria-invalid="true"] {

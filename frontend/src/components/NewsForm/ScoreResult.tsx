@@ -1,13 +1,17 @@
 import styles from "./ScoreResult.module.css";
 
 type ScoreResultProps = {
-  score: number;
+  score: number | null;
 };
 
 export function ScoreResult({ score }: ScoreResultProps) {
   return (
-    <output className={styles.result}>
-      News score: <strong className={styles.score}>{score}</strong>
+    <output aria-live="polite" aria-atomic="true">
+      {score !== null && (
+        <span className={styles.result}>
+          News score: <strong className={styles.score}>{score}</strong>
+        </span>
+      )}
     </output>
   );
 }
