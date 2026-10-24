@@ -1,0 +1,34 @@
+# Personal AI-assistant instructions (kept local)
+CLAUDE.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+npm-debug.log*
+
+# Environment files (keep the committed example)
+.env*
+!.env.example
+
+# Playwright (optional e2e)
+playwright-report/
+test-results/
