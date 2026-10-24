@@ -5,14 +5,20 @@ type MeasurementFieldProps = {
   name: MeasurementType;
   label: string;
   helperText: string;
+  invalid: boolean;
 };
+
+export function measurementInputId(name: MeasurementType) {
+  return `measurement-${name}`;
+}
 
 export function MeasurementField({
   name,
   label,
   helperText,
+  invalid,
 }: MeasurementFieldProps) {
-  const inputId = `measurement-${name}`;
+  const inputId = measurementInputId(name);
   const helperId = `${inputId}-helper`;
 
   return (
@@ -36,6 +42,7 @@ export function MeasurementField({
         autoComplete="off"
         required
         aria-describedby={helperId}
+        aria-invalid={invalid || undefined}
       />
     </div>
   );
