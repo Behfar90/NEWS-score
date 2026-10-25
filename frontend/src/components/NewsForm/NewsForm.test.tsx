@@ -1,5 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import axe from "axe-core";
 import { describe, expect, it, vi } from "vitest";
 import { NewsForm } from "./NewsForm";
 
@@ -38,6 +39,14 @@ async function submit(user: ReturnType<typeof userEvent.setup>) {
 }
 
 const VALID_VALUES = { TEMP: "39", HR: "43", RR: "19" };
+
+async function expectNoAccessibilityViolations() {
+  const results = await axe.run(document.body, {
+    runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] },
+    rules: { "color-contrast": { enabled: false } },
+  });
+  expect(results.violations).toEqual([]);
+}
 
 describe("NewsForm", () => {
   it("does not call the API when the form is empty", async () => {
@@ -211,5 +220,48 @@ describe("NewsForm", () => {
 
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     expect(screen.getByLabelText(LABELS.TEMP)).not.toHaveAttribute("aria-invalid");
+  });
+});
+
+describe("NewsForm accessibility", () => {
+  it("has no violations when empty", async () => {
+    renderForm();
+
+    await expectNoAccessibilityViolations();
+  });
+
+  it("has no violations when showing a score", async () => {
+    mockFetch(jsonResponse({ score: 2 }, 200, "application/json"));
+    const user = renderForm();
+
+    await fillForm(user, VALID_VALUES);
+    await submit(user);
+    await screen.findByText("News score:", { exact: false });
+
+    await expectNoAccessibilityViolations();
+  });
+
+  it("has no violations when showing server errors", async () => {
+    mockFetch(
+      jsonResponse(
+        {
+          title: "",
+          status: 400,
+          errors: {
+            "measurements[0].value": ["TEMP must be between 32 and 42."],
+            "measurements[1].value": ["HR must be between 26 and 220."],
+          },
+        },
+        400,
+        "application/problem+json",
+      ),
+    );
+    const user = renderForm();
+
+    await fillForm(user, { TEMP: "31", HR: "300", RR: "19" });
+    await submit(user);
+    await screen.findByRole("alert");
+
+    await expectNoAccessibilityViolations();
   });
 });
