@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { flushSync } from "react-dom";
 import { calculateNewsScore, type CalculateResult } from "@/lib/newsApi";
 import type { MeasurementType } from "@/lib/types";
 import { ErrorSummary } from "./ErrorSummary";
@@ -53,8 +54,10 @@ export function NewsForm() {
   }
 
   function handleReset() {
-    setResult(null);
-    setEditedFields([]);
+    flushSync(() => {
+      setResult(null);
+      setEditedFields([]);
+    });
   }
 
   const fieldErrors = result?.kind === "invalid" ? result.fieldErrors : {};
