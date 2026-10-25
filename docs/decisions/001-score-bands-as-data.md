@@ -31,5 +31,5 @@ public sealed record ScoreBand(int LowerExclusive, int UpperInclusive, int Score
 - The boundary rule exists in exactly one place, and the table reads like the spec, so reviewing it means comparing numbers.
 - Scoring and validation cannot disagree, because they read the same data.
 - Every band boundary of every type is covered by a test (30 cases plus the out-of-range cases). Changing `<=` to `<` in `Contains` makes 19 tests fail.
-- Changing a threshold is a one-line diff, but it still needs a deploy. Configurable, versioned thresholds are listed as a production next step.
+- Changing a threshold is a one-line diff, but it still needs a deploy. Making thresholds configurable and versioned would remove that, using the same `ScoreBand` shape.
 - The range shown in error messages (lowest start to highest end) assumes the bands for a type are contiguous, which they are in the spec. Validity itself is checked band by band, so a gap would still be rejected correctly.
