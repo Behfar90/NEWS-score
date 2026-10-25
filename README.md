@@ -146,4 +146,8 @@ The spec leaves some cases open. These are the choices I made.
 
 ## Time spent
 
-Roughly 2 hours for the backend, 2–2.5 hours for the frontend and 45 minutes for the docs.
+- Repo setup and project scaffolding: ~30 min
+- Backend, written test-first alongside the code: ~2.5 h
+- Frontend form, API integration and accessibility: ~2.5 h
+- Frontend tests and automated a11y checks: ~45 min
+- README, ADRs and screenshots: ~45 min
